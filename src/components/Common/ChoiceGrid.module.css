@@ -1,0 +1,24 @@
+.gridContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22%, 1fr));
+  gap: 3%;
+
+  width: 100%;
+  margin-top: 3%;
+}
+
+.choiceButton {
+  /* 버튼 크기는 px로, 배치는 %로 */
+  padding: 12px; /* px 단위 패딩 */
+  border: none;
+  border-radius: 6px; /* px 단위로 라운딩 */
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-align: center;
+  font-size: 14px; /* px 단위 폰트 크기 */
+}
+
+.choiceButton:hover {
+  background-color: #ccc;
+}

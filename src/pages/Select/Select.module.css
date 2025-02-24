@@ -1,0 +1,40 @@
+.selectContainer {
+  width: 100%;
+}
+
+/* 뒤로가기 버튼 */
+.backButton {
+  display: inline-block;
+  margin-bottom: 5%;
+  padding: 8px 12px; /* px */
+  background-color: #ddd;
+  border: none;
+  border-radius: 4px; /* px */
+  cursor: pointer;
+}
+
+/* 질문 박스 */
+.questionBox {
+  margin: 4% 0;
+  text-align: center;
+}
+
+/* 팁 문구 */
+.tipBox {
+  margin-top: 4%;
+  text-align: center;
+  color: #666;
+  font-size: 14px; /* px */
+}
+
+/* 다음 단계 버튼 */
+.nextButton {
+  margin-top: 5%;
+  width: 100%;
+  padding: 12px; /* px */
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px; /* px */
+  cursor: pointer;
+}
