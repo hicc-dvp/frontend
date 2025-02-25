@@ -34,8 +34,8 @@ function QR() {
       {/* 중앙 컨텐츠 */}
       <div className={styles.content}>
         <h2 className={styles.title}>
-          '제순식당'
-          <span className={styles.highlight}>의 네이버 지도 QR이에요.</span>
+          <span className={styles.highlight}>'제순식당'</span>
+          의 네이버 지도에요
           <br />
           스캔하고 바로 위치를 저장하세요!
         </h2>
