@@ -1,0 +1,19 @@
+.choiceItemButton {
+  /* 일정한 크기로 고정 */
+  width: 120px;
+  height: 50px;
+
+  border: none;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.choiceItemButton:hover {
+  background-color: #ccc;
+}

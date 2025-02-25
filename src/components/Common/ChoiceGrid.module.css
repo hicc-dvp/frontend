@@ -1,24 +1,14 @@
 .gridContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(22%, 1fr));
-  gap: 3%;
-
+  /* 3열씩 고정 배치 */
+  grid-template-columns: repeat(3, 120px);
+  /* 아이템들 사이 간격 */
+  gap: 16px;
+  /* 그리드 자체를 수평으로 중앙 정렬 */
+  justify-content: center;
+  /* 여러 행이 생길 때 수직 방향도 중앙 정렬 */
+  align-content: center;
+  /* 부모 요소가 충분히 커야 세로 중앙정렬이 적용됨 */
   width: 100%;
-  margin-top: 3%;
-}
-
-.choiceButton {
-  /* 버튼 크기는 px로, 배치는 %로 */
-  padding: 12px; /* px 단위 패딩 */
-  border: none;
-  border-radius: 6px; /* px 단위로 라운딩 */
-  background-color: #f0f0f0;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-  text-align: center;
-  font-size: 14px; /* px 단위 폰트 크기 */
-}
-
-.choiceButton:hover {
-  background-color: #ccc;
+  height: 100%;
 }

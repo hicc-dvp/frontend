@@ -1,5 +1,6 @@
 .progressBarContainer {
-  width: 100%; /* 가로는 전체 차지 */
+  margin: auto;
+  width: 60%; /* 가로는 전체 차지 */
   height: 10px; /* px 단위로 고정 */
   background-color: #e0e0e0;
   border-radius: 5px;
@@ -9,6 +10,6 @@
 
 .progressFill {
   height: 100%;
-  background-color: #4caf50;
+  background-color: var(--main-color);
   transition: width 0.3s ease;
 }
