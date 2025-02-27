@@ -5,20 +5,34 @@ import Home from "./pages/Home/Home";
 import Select from "./pages/Select/Select";
 import Result from "./pages/Result/Result";
 import QR from "./pages/Result/qr";
+import Join from "./pages/Join/Join";
+import Mate from "./pages/Result/Mate";
 import "./styles/colors.css";
 import "./App.css";
 
 function App() {
   return (
     <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/select" element={<Select />} />
-          <Route path="/result" element={<Result />} />
-          <Route path="/qr" element={<QR />} />
-        </Routes>
-      </Layout>
+      <Routes>
+        {/* Home 페이지는 Layout 없이 */}
+        <Route path="/" element={<Home />} />
+
+        {/* 나머지 페이지들은 Layout 적용 */}
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <Routes>
+                <Route path="/select" element={<Select />} />
+                <Route path="/result" element={<Result />} />
+                <Route path="/qr" element={<QR />} />
+                <Route path="/join" element={<Join />} />
+                <Route path="/mate" element={<Mate />} />
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
     </Router>
   );
 }

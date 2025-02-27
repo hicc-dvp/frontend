@@ -1,0 +1,146 @@
+/* src/pages/Join/Join.module.css */
+
+/* ---------------- 폼 영역 스타일 ---------------- */
+.joinContainer {
+  width: 100%;
+  max-height: 100vh; /* 화면 전체 높이 (수직 스크롤 제한) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* 세로 중앙 정렬 */
+}
+
+.mainTitle {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.label {
+  width: 100%;
+  max-width: 360px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.selectRow {
+  width: 530px;
+  height: 40px;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 24px;
+}
+
+.selectBox {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+}
+
+.inputBox {
+  width: 500px;
+  height: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 24px;
+  font-size: 14px;
+  outline: none;
+}
+
+.textArea {
+  width: 500px;
+  height: 80px;
+  resize: none;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  font-weight: bold;
+  font-size: 14px;
+  outline: none;
+}
+
+.submitButton {
+  width: 250px;
+  padding: 12px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: var(--main-color);
+  color: #fff;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  opacity: 0.85;
+}
+
+/* ---------------- 가입 완료 화면 스타일 ---------------- */
+.completeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px; /* 위아래 요소 간격 */
+}
+
+.doneText {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  margin-top: 30%;
+}
+
+.questionText {
+  margin: 0;
+  font-size: 24px;
+  color: #333;
+}
+
+.highlight {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.buttonGroup {
+  display: flex;
+  gap: 16px; /* 버튼 사이 간격 */
+}
+
+.blueButton,
+.whiteButton {
+  width: 240px;
+  margin-top: 8%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+/* 파란 버튼 */
+.blueButton {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+/* 흰 버튼 */
+.whiteButton {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.blueButton:hover,
+.whiteButton:hover {
+  opacity: 0.85;
+}

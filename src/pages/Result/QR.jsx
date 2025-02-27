@@ -16,7 +16,7 @@ function QR() {
 
   const handleJoin = () => {
     // "가입하고 식사 메이트 찾기" 버튼 로직
-    alert("가입 페이지로 이동해 가입하면 됩니다!");
+    navigate("/join");
   };
 
   // 뒤로가기 버튼

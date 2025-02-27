@@ -62,7 +62,7 @@ function Select() {
   // 선택 시 다음 단계로 이동 (예: 0.5초 후 이동)
   const handleSelect = (choiceId) => {
     console.log(`선택: ${choiceId}`);
-    setTimeout(goNext, 500);
+    setTimeout(goNext, 200);
   };
 
   // 뒤로가기 (단순히 1단계면 홈으로, 2단계 이상이면 이전 단계 이동)

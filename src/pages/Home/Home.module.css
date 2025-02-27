@@ -1,19 +1,121 @@
 .container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #138dfe 0%, #b5dbff 56.57%);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  overflow: hidden;
 }
 
-.title {
-  font-size: 48px;
-  text-transform: uppercase;
+.footerText {
+  position: absolute;
+  top: 5%;
+  font-family: "Gmarket Sans TTF", sans-serif;
+  font-size: 28px;
+  font-weight: 500;
+  color: white;
+  z-index: 2;
+}
+
+.banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5%;
+  margin-top: 10px;
+  position: relative;
+  top: -10%;
+  z-index: 2;
+}
+
+.bannerRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.bannerItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border-radius: 72.5px;
+  padding: 0px 30px;
+  font-family: "Gmarket Sans TTF", sans-serif;
+  font-size: 54px;
+  font-weight: 700;
+  color: #217cec;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  min-height: 10%;
+}
+
+.bannerText {
+  font-family: "Gmarket Sans TTF", sans-serif;
+  font-size: 64px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.icon {
+  width: 64px;
+  height: 64px;
 }
 
 .button {
-  margin-top: 30px;
-  padding: 10px 20px;
-  font-size: 16px;
+  position: absolute;
+  bottom: 15%;
+  background-color: var(--main-color);
+  color: #fff;
+  width: 250px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
+  font-size: 24px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.floatingIconsWrapper {
+  position: absolute;
+  width: 100vw;
+  height: 500px;
+  overflow: hidden; /* 아이콘이 자연스럽게 이어지도록 */
+  top: 0%; /* 원하는 위치로 조정 */
+}
+
+.floatingIcons {
+  display: flex;
+  gap: 0px; /* 아이콘 사이 간격 */
+  width: max-content; /* 요소들이 자동으로 확장되도록 */
+  animation: scrollIcons 30s linear infinite;
+}
+
+@keyframes scrollIcons {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(
+      -50%
+    ); /* 아이콘이 절반만 이동하고 다시 처음으로 돌아가게 설정 */
+  }
+}
+
+.iconFloating {
+  width: 500px;
+  height: auto;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
