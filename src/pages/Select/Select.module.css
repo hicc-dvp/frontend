@@ -10,19 +10,22 @@
 
 /* 왼쪽 상단 플로팅 뒤로가기 버튼 */
 .backButton {
-  position: fixed; /* 화면에 고정 */
-  top: 16px;
-  left: 16px;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  padding: 8px 12px;
-  border-radius: 4px;
+  position: fixed;
+  top: 8%;
+  left: 4%;
+  background: none;
+  border-radius: 50%;
+  border: none;
   cursor: pointer;
-  z-index: 999; /* 다른 요소보다 위로 */
+  z-index: 999;
+}
+
+.backIcon {
+  width: 45px;
 }
 
 .backButton:hover {
-  background-color: #f2f2f2;
+  background-color: var(--sub-color);
 }
 
 /* 진행바를 화면 위쪽에 고정 */

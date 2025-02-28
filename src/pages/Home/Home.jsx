@@ -13,24 +13,29 @@ import CakeIcon from "../../assets/svg/cake.svg?url";
 function Home() {
   const navigate = useNavigate();
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isRotaing, setIsRotating] = useState(false);
 
   const icons = [PizzaIcon, RamenIcon, HamIcon, SushiIcon, CakeIcon];
 
   const handleStart = () => {
     if (isAnimating) return; // 중복 실행 방지
-    setIsAnimating(true); // 애니메이션 시작
+    setIsRotating(true); // 애니메이션 시작
 
     // 일정 시간 후 페이지 이동
     setTimeout(() => {
-      navigate("/select");
-    }, 500);
+      // 중간 대기 (400ms 동안 정지)
+      setIsAnimating(true);
+      setTimeout(() => {
+        navigate("/select"); // 400ms 대기 후 페이드아웃 후 이동
+      }, 600);
+    }, 800); // 첫 번째 400ms (아이콘 회전)
   };
 
   return (
     <motion.div
       className={styles.container}
       animate={isAnimating ? { opacity: 0 } : { opacity: 1 }} // 페이드 아웃 효과
-      transition={{ duration: 0.5 }} // 2.5초 동안 서서히 사라짐
+      transition={{ duration: 0.6 }} // 2.5초 동안 서서히 사라짐
     >
       <p className={styles.footerText}>중앙 컴퓨터 동아리 HICC</p>
 
@@ -45,7 +50,7 @@ function Home() {
             <img
               key={index}
               src={icon}
-              className={styles.iconFloating}
+              className={`${styles.iconFloating} ${isRotaing ? styles.rotating : ""}`}
               alt={`아이콘-${index}`}
             />
           ))}

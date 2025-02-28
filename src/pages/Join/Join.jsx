@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Join.module.css";
+import DownIcon from "../../assets/svg/down.svg?url";
+import BackIcon from "../../assets/svg/back.svg?url";
 
 function Join() {
   const navigate = useNavigate();
@@ -15,59 +17,80 @@ function Join() {
   // 가입 완료 화면 전환 여부
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
+  // 단과대학과 학부/학과 옵션 리스트
+  const colleges = [
+    "단과대학",
+    "공과대학",
+    "사범대학",
+    "미술대학",
+    "경영대학",
+    "사회과학대학",
+  ];
+  const departments = [
+    "학부/학과명",
+    "컴퓨터공학과",
+    "전자전기공학과",
+    "수학교육과",
+    "경영학과",
+    "심리학과",
+  ];
+
   // 폼 제출
   const handleSubmit = () => {
     console.log("단과대학:", college);
     console.log("학부/학과:", department);
     console.log("인스타:", instagram);
     console.log("자기소개:", intro);
-
-    // 실제 가입 로직(백엔드 전송 등)
     setIsSubmitted(true);
-  };
-
-  // “같은 과 친구로 매칭할까요?” → “좋아요” 버튼
-  const handleLike = () => {
-    navigate("/mate");
-  };
-
-  // “같은 과 친구로 매칭할까요?” → “괜찮아요” 버튼
-  const handleOk = () => {
-    navigate("/");
   };
 
   return (
     <div className={styles.joinContainer}>
       {!isSubmitted ? (
-        // ---------- 폼 입력 화면 ----------
         <>
+          <button className={styles.backButton} onClick={handleBack}>
+            <img src={BackIcon} alt="뒤로가기" className={styles.backIcon} />
+          </button>
+
           <h2 className={styles.mainTitle}>딱 이것만 입력하면 가입 완료!</h2>
 
           <label className={styles.label}>학과를 선택해주세요</label>
           <div className={styles.selectRow}>
-            <select
-              className={styles.selectBox}
-              value={college}
-              onChange={(e) => setCollege(e.target.value)}
-            >
-              <option value="">단과대학</option>
-              <option value="공과대학">공과대학</option>
-              <option value="사범대학">사범대학</option>
-              <option value="미술대학">미술대학</option>
-              {/* ... */}
-            </select>
+            {/* 단과대학 선택 */}
+            <div className={styles.selectWrapper}>
+              <select
+                className={styles.selectBox}
+                value={college}
+                onChange={(e) => setCollege(e.target.value)}
+              >
+                {colleges.map((col, index) => (
+                  <option key={index} value={col}>
+                    {col}
+                  </option>
+                ))}
+              </select>
+              <img src={DownIcon} alt="드롭다운" className={styles.downIcon} />
+            </div>
 
-            <select
-              className={styles.selectBox}
-              value={department}
-              onChange={(e) => setDepartment(e.target.value)}
-            >
-              <option value="">학부/학과명</option>
-              <option value="컴퓨터공학과">컴퓨터공학과</option>
-              <option value="전자전기공학과">전자전기공학과</option>
-              <option value="수학교육과">수학교육과</option>
-              {/* ... */}
-            </select>
+            {/* 학부/학과 선택 */}
+            <div className={styles.selectWrapper}>
+              <select
+                className={`${styles.selectBox} ${departments.length > 5 ? styles.scrollable : ""}`}
+                value={department}
+                onChange={(e) => setDepartment(e.target.value)}
+              >
+                {departments.map((dept, index) => (
+                  <option key={index} value={dept}>
+                    {dept}
+                  </option>
+                ))}
+              </select>
+              <img src={DownIcon} alt="드롭다운" className={styles.downIcon} />
+            </div>
           </div>
 
           <label className={styles.label}>
@@ -94,7 +117,6 @@ function Join() {
           </button>
         </>
       ) : (
-        // ---------- 가입 완료 화면 ----------
         <div className={styles.completeContainer}>
           <p className={styles.doneText}>가입 완료!</p>
           <p className={styles.questionText}>
@@ -102,10 +124,16 @@ function Join() {
           </p>
 
           <div className={styles.buttonGroup}>
-            <button className={styles.blueButton} onClick={handleLike}>
+            <button
+              className={styles.blueButton}
+              onClick={() => navigate("/mate")}
+            >
               좋아요
             </button>
-            <button className={styles.whiteButton} onClick={handleOk}>
+            <button
+              className={styles.whiteButton}
+              onClick={() => navigate("/")}
+            >
               괜찮아요
             </button>
           </div>

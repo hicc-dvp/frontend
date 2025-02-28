@@ -16,6 +16,25 @@
   margin-bottom: 40px;
 }
 
+.backButton {
+  position: fixed;
+  top: 8%;
+  left: 4%;
+  background: none;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.backIcon {
+  width: 45px;
+}
+
+.backButton:hover {
+  background-color: var(--sub-color);
+}
+
 .label {
   width: 100%;
   max-width: 360px;
@@ -34,8 +53,13 @@
   margin-bottom: 24px;
 }
 
-.selectBox {
+.selectWrapper {
+  position: relative;
   flex: 1;
+}
+
+.selectBox {
+  width: 100%;
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
@@ -43,6 +67,26 @@
   font-size: 14px;
   color: #333;
   outline: none;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
+  appearance: none; /* 기본 드롭다운 화살표 제거 */
+  cursor: pointer;
+}
+
+/* 선택지가 많을 경우 스크롤 적용 */
+.selectBox.scrollable {
+  max-height: 150px;
+  overflow-y: auto;
+}
+
+/* 드롭다운 아이콘 스타일 */
+.downIcon {
+  position: absolute;
+  right: 10px;
+  top: 40%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
 }
 
 .inputBox {
@@ -54,6 +98,7 @@
   margin-bottom: 24px;
   font-size: 14px;
   outline: none;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
 
 .textArea {
@@ -67,6 +112,7 @@
   font-weight: bold;
   font-size: 14px;
   outline: none;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.2);
 }
 
 .submitButton {
