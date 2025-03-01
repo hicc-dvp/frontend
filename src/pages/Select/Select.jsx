@@ -8,8 +8,8 @@ import BackIcon from "../../assets/svg/back.svg?url"; // 뒤로가기 아이콘
 const stepData = [
   {
     id: 1,
-    question: "첫 번째 단계 질문?",
-    subquestion: "안녕하세요",
+    question: "주로 어디에서 강의가 끝나나요?",
+    subquestion: "홍대입구역/상수역 중 한 군데만 선택해주세요",
     choices: [
       { id: 1, label: "홍대입구역" },
       { id: 2, label: "상수역" },
@@ -18,7 +18,8 @@ const stepData = [
   },
   {
     id: 2,
-    question: "두 번째 단계 질문?",
+    question: "어떤 음식을 좋아하시나요?",
+    subquestion: "좋아하는 음식 카테고리를 하나만 선택해주세요",
     choices: [
       { id: 1, label: "한식" },
       { id: 2, label: "일식" },
@@ -111,7 +112,8 @@ function Select() {
   if (currentStep === 3 && selectedSecondStep) {
     stepInfo = {
       id: 3,
-      question: "세 번째 단계 질문?",
+      question: "선호하는 메인 디쉬가 있으신가요?",
+      subquestion: "없다면 ‘없음'을 눌러주세요",
       choices: thirdStepOptions[selectedSecondStep] || [],
     };
   }
@@ -123,10 +125,10 @@ function Select() {
       if (selectedSecondStep && thirdStepOptions[selectedSecondStep]) {
         setCurrentStep(3); // 3단계로 이동
       } else {
-        navigate("/result"); // 3단계가 없으면 바로 결과 페이지로 이동
+        navigate("/qr"); // 3단계가 없으면 바로 결과 페이지로 이동
       }
     } else {
-      navigate("/result"); // 3단계 이후 결과 페이지로 이동
+      navigate("/qr"); // 3단계 이후 결과 페이지로 이동
     }
   }
 
@@ -138,11 +140,11 @@ function Select() {
         if (thirdStepOptions[choiceId]) {
           setCurrentStep(3); // 3단계 선택지가 있으면 3단계로 이동
         } else {
-          navigate("/result"); // 3단계 선택지가 없으면 결과 페이지로 이동
+          navigate("/qr"); // 3단계 선택지가 없으면 결과 페이지로 이동
         }
       }, 200);
     } else if (currentStep === 3) {
-      setTimeout(() => navigate("/result"), 200); // 3단계에서 선택 후 결과 페이지 이동
+      setTimeout(() => navigate("/qr"), 200); // 3단계에서 선택 후 결과 페이지 이동
     } else {
       setTimeout(goNext, 200);
     }
@@ -168,6 +170,10 @@ function Select() {
 
       <div className={styles.questionText}>
         <h2>{stepInfo.question}</h2>
+      </div>
+
+      <div className={styles.subText}>
+        <h2>{stepInfo.subquestion}</h2>
       </div>
 
       <ChoiceGrid choices={stepInfo.choices} onSelect={handleSelect} />

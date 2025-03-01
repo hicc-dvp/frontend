@@ -36,7 +36,7 @@ function QR() {
           아래에서 바로 확인하세요!
         </h2>
         <p className={styles.subText}>
-          가입하면 함께 갈 식사 메이트를 구할 수 있어요
+          등록하면 함께 갈 식사 메이트를 구할 수 있어요
         </p>
 
         {/* 네이버 지도 페이지를 iframe으로 표시 */}
@@ -55,7 +55,7 @@ function QR() {
             마치기
           </button>
           <button className={styles.blueButton} onClick={handleJoin}>
-            가입하고 식사 메이트 찾기
+            등록하고 식사 메이트 찾기
           </button>
         </div>
       </div>

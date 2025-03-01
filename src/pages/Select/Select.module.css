@@ -56,8 +56,11 @@
 }
 
 .subText {
-  font-size: 14px;
-  color: #666; /* 회색 톤으로 흐리게 */
+  position: absolute;
+  text-align: center;
+  top: 22%;
+  font-size: 10px;
+  color: #939393; /* 회색 톤으로 흐리게 */
 }
 
 /* 흐린(연한) 부가설명 텍스트 */
