@@ -7,6 +7,7 @@ import Result from "./pages/Result/Result";
 import QR from "./pages/Result/qr";
 import Join from "./pages/Join/Join";
 import Mate from "./pages/Result/Mate";
+import TestAPI from "./pages/TestAPI/TestAPI";
 import "./styles/colors.css";
 import "./App.css";
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/qr" element={<QR />} />
                 <Route path="/join" element={<Join />} />
                 <Route path="/mate" element={<Mate />} />
+                <Route path="/test-api" element={<TestAPI />} />
               </Routes>
             </Layout>
           }
