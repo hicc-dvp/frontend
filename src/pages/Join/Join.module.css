@@ -228,8 +228,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 10px;
-  font-size: 16px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-size: 14px;
 }
 
 .submitButton.disabled {
