@@ -44,8 +44,12 @@ function Join() {
 
   const handleSubmit = async () => {
     try {
+      let formattedInstagramId = instagramId.trim(); // 공백 제거
+      if (!formattedInstagramId.startsWith("@")) {
+        formattedInstagramId = "@" + formattedInstagramId; // 자동으로 @ 추가
+      }
       const userData = {
-        instagramId,
+        instagramId: formattedInstagramId,
         introduction,
         restaurantId,
       };
