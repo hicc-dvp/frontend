@@ -1,0 +1,14 @@
+.gridContainer {
+  display: grid;
+  /* 3열씩 고정 배치 */
+  grid-template-columns: repeat(3, 120px);
+  /* 아이템들 사이 간격 */
+  gap: 16px;
+  /* 그리드 자체를 수평으로 중앙 정렬 */
+  justify-content: center;
+  /* 여러 행이 생길 때 수직 방향도 중앙 정렬 */
+  align-content: center;
+  /* 부모 요소가 충분히 커야 세로 중앙정렬이 적용됨 */
+  width: 100%;
+  height: 100%;
+}

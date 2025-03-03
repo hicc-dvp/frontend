@@ -1,0 +1,143 @@
+/* src/pages/Result/Mate.module.css */
+
+.mateContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* 브라우저 뷰포트 전체 높이 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  text-align: center;
+}
+
+/* 상단 텍스트 */
+.title {
+  font-size: 20px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.subText {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* QR + 카드의 가로 배치 */
+.qrCardRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px; /* 간격 */
+  margin-bottom: 30px;
+}
+
+/* 왼쪽 QR 섹션 */
+.qrWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qrImage {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 0px;
+}
+
+.handle {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* 오른쪽 카드 */
+.card {
+  width: 300px; /* 카드 폭 */
+  height: 140px;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 8px;
+
+  white-space: pre-wrap;
+}
+
+.cardMajor {
+  font-weight: bold;
+  margin: 0;
+}
+
+.cardIntro {
+  margin: 0;
+  font-size: 14px;
+  color: #555;
+}
+
+/* 버튼 2개를 가로로 나란히 */
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+/* 흰색 버튼 */
+.whiteButton {
+  background-color: #fff;
+  color: #333;
+  width: 240px;
+  margin-top: 8%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  border: 1px solid #ccc;
+}
+
+/* 파란색 버튼 */
+.blueButton {
+  background-color: var(--main-color);
+  color: #fff;
+  width: 240px;
+  margin-top: 8%;
+  padding: 12px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.whiteButton:hover,
+.blueButton:hover {
+  opacity: 0.85;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.backButton {
+  position: fixed;
+  top: 8%;
+  left: 4%;
+  background: none;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.backIcon {
+  width: 45px;
+}
+
+.backButton:hover {
+  background-color: var(--sub-color);
+}
