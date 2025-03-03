@@ -57,7 +57,7 @@ yarn install  # 또는 npm install
 ```env
 REACT_APP_API_BASE_URL=https://your-api-url.com
 ```
-
+ex) http://localhost:8080
 ### 4️⃣ 실행
 
 ```bash
