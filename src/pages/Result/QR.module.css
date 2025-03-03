@@ -54,7 +54,8 @@
 
 /* iframe을 감싸는 컨테이너 */
 .iframeWrapper {
-  width: 800px; /* 원하는 너비 */
+  margin: auto;
+  width: 600px; /* 원하는 너비 */
   height: 300px; /* 원하는 높이 */
   overflow: hidden; /* 내부 내용이 넘치지 않도록 */
   border-radius: 16px;
@@ -63,7 +64,7 @@
 
 /* 내부 페이지 축소 */
 .mapIframe {
-  width: 1600px; /* 원본 크기의 2배 */
+  width: 1200px; /* 원본 크기의 2배 */
   height: 1200px; /* 원본 크기의 2배 */
   transform: scale(0.5); /* 50% 크기로 축소 */
   transform-origin: top left; /* 축소 기준점을 좌상단으로 설정 */
