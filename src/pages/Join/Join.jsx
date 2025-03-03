@@ -148,7 +148,7 @@ function Join() {
               <label className={styles.label}>간단한 자기소개</label>
               <textarea
                 className={styles.textArea}
-                placeholder="100자 이내로 작성해주세요"
+                placeholder="예시) 25학번 컴퓨터공학과 신입생이에요. 밥 같이 먹을 친구 구해요"
                 maxLength={100}
                 value={introduction}
                 onChange={(e) => setIntroduction(e.target.value)}
