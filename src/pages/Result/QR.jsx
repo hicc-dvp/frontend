@@ -1,64 +1,109 @@
-// src/pages/Result/QR.jsx
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./QR.module.css";
 import BackIcon from "../../assets/svg/back.svg?url";
+import { getRequest } from "../../api/axiosInstance";
 
 function QR() {
   const navigate = useNavigate();
-  const placeUrl =
-    "https://map.naver.com/p/search/%EC%A0%9C%EC%88%9C%EC%8B%9D%EB%8B%B9/place/1299875051";
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [currentRestaurant, setCurrentRestaurant] = useState(null);
 
-  const handleFinish = () => {
-    navigate("/");
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      try {
+        const station = localStorage.getItem("selectedStation") || "홍대입구역"; // 선택한 역 반영
+        const categoryId = localStorage.getItem("selectedCategoryId");
+        const dishId = localStorage.getItem("selectedDish");
+
+        let apiUrl = "";
+        if (dishId && dishId !== "10") {
+          apiUrl = `/restaurants/search-queries/${dishId}/restaurant?station=${encodeURIComponent(station)}`;
+        } else {
+          apiUrl = `/restaurants/categories/${categoryId}/restaurant?station=${encodeURIComponent(station)}`;
+        }
+
+        const response = await getRequest(apiUrl);
+        setRestaurantList(response);
+
+        if (response.length > 0) {
+          // 🚀 처음부터 랜덤한 음식점 선택!
+          setCurrentRestaurant(
+            response[Math.floor(Math.random() * response.length)]
+          );
+        }
+      } catch (error) {
+        console.error("음식점 데이터를 불러오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchRestaurants();
+  }, []);
+
+  const getMapUrl = (name) =>
+    `https://map.naver.com/v5/search/${encodeURIComponent(name)}`;
+
+  const handleRefresh = () => {
+    if (restaurantList.length > 1) {
+      const newRestaurantList = restaurantList.filter(
+        (r) => r !== currentRestaurant
+      );
+      setCurrentRestaurant(
+        newRestaurantList[Math.floor(Math.random() * newRestaurantList.length)]
+      );
+    }
   };
 
-  const handleJoin = () => {
+  const handleRegister = () => {
+    if (currentRestaurant) {
+      localStorage.setItem("selectedRestaurant", currentRestaurant.id);
+    }
     navigate("/join");
-  };
-
-  const handleBack = () => {
-    navigate(-1);
   };
 
   return (
     <div className={styles.qrContainer}>
-      {/* 왼쪽 상단 뒤로가기 버튼 */}
-      <button className={styles.backButton} onClick={handleBack}>
+      <button className={styles.backButton} onClick={() => navigate(-1)}>
         <img src={BackIcon} alt="뒤로가기" className={styles.backIcon} />
       </button>
 
-      {/* 중앙 컨텐츠 */}
-      <div className={styles.content}>
-        <h2 className={styles.title}>
-          <span className={styles.highlight}>'제순식당'</span>의 네이버 지도에요
-          <br />
-          아래에서 바로 확인하세요!
-        </h2>
-        <p className={styles.subText}>
-          등록하면 함께 갈 식사 메이트를 구할 수 있어요
-        </p>
+      {currentRestaurant ? (
+        <div className={styles.content}>
+          <h2 className={styles.title}>
+            <span className={styles.highlight}>‘{currentRestaurant.name}’</span>
+            의 네이버 지도에요
+          </h2>
+          <p className={styles.subText}>
+            등록하면 함께 갈 식사 메이트를 구할 수 있어요
+          </p>
 
-        {/* 네이버 지도 페이지를 iframe으로 표시 */}
-        <div className={styles.iframeWrapper}>
-          <iframe
-            src={placeUrl}
-            className={styles.mapIframe}
-            title="네이버 지도"
-            allowFullScreen
-          ></iframe>
-        </div>
+          <div className={styles.iframeWrapper}>
+            <iframe
+              src={getMapUrl(currentRestaurant.name)}
+              className={styles.mapIframe}
+              title="네이버 지도"
+              allowFullScreen
+            ></iframe>
+          </div>
 
-        {/* 버튼 2개 */}
-        <div className={styles.buttonGroup}>
-          <button className={styles.whiteButton} onClick={handleFinish}>
-            마치기
-          </button>
-          <button className={styles.blueButton} onClick={handleJoin}>
-            등록하고 식사 메이트 찾기
-          </button>
+          <div className={styles.buttonGroup}>
+            <button
+              className={styles.whiteButton}
+              onClick={() => navigate("/")}
+            >
+              마치기
+            </button>
+            <button className={styles.skyButton} onClick={handleRefresh}>
+              다른 음식점 보기
+            </button>
+            <button className={styles.blueButton} onClick={handleRegister}>
+              등록하기
+            </button>
+          </div>
         </div>
-      </div>
+      ) : (
+        <p>음식점 데이터를 불러오는 중...</p>
+      )}
     </div>
   );
 }

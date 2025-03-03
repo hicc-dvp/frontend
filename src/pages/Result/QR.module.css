@@ -111,3 +111,13 @@
 .blueButton:hover {
   opacity: 0.85;
 }
+
+.skyButton {
+  width: 250px;
+  background-color: #4896f7;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+}

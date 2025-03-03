@@ -49,7 +49,7 @@
 }
 
 .handle {
-  margin-top: 0px;
+  margin-top: 8px;
   font-size: 14px;
   color: #333;
 }
@@ -67,6 +67,8 @@
   align-items: flex-start;
   text-align: left;
   gap: 8px;
+
+  white-space: pre-wrap;
 }
 
 .cardMajor {
@@ -118,4 +120,24 @@
 .whiteButton:hover,
 .blueButton:hover {
   opacity: 0.85;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.backButton {
+  position: fixed;
+  top: 8%;
+  left: 4%;
+  background: none;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 999;
+}
+
+.backIcon {
+  width: 45px;
+}
+
+.backButton:hover {
+  background-color: var(--sub-color);
 }

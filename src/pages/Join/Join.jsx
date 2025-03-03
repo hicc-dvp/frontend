@@ -1,8 +1,7 @@
-// src/pages/Join/Join.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { postRequest } from "../../api/axiosInstance"; // API 요청 추가
 import styles from "./Join.module.css";
-import DownIcon from "../../assets/svg/down.svg?url";
 import BackIcon from "../../assets/svg/back.svg?url";
 
 function Join() {
@@ -14,18 +13,23 @@ function Join() {
   const [isPrivacyChecked, setIsPrivacyChecked] = useState(false);
   const isButtonEnabled = isTermsChecked && isPrivacyChecked;
 
-  // 2. 가입 폼 입력 state
-  const [college, setCollege] = useState("");
-  const [department, setDepartment] = useState("");
-  const [instagram, setInstagram] = useState("");
-  const [intro, setIntro] = useState("");
+  // 2. 가입 폼 입력 상태
+  const [instagramId, setInstagramId] = useState("");
+  const [introduction, setIntroduction] = useState("");
+  const [restaurantId, setRestaurant] = useState(0); // 기본값 0
+
+  useEffect(() => {
+    const selectedRestaurant = localStorage.getItem("selectedRestaurant");
+    if (selectedRestaurant) {
+      setRestaurant(parseInt(selectedRestaurant, 10));
+    }
+  }, []);
 
   const isSubmitEnabled =
     isTermsChecked &&
     isPrivacyChecked &&
-    college &&
-    department &&
-    instagram.trim() !== "";
+    instagramId.trim() !== "" &&
+    introduction.trim() !== ""; // 소개란도 입력 필수
 
   // 3. 가입 완료 여부
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -34,36 +38,26 @@ function Join() {
     navigate(-1);
   };
 
-  // 약관 동의 상태 변경
   const handleAgree = () => {
     setIsAgreed(true);
   };
 
-  // 단과대학과 학부/학과 옵션 리스트
-  const colleges = [
-    "단과대학",
-    "공과대학",
-    "사범대학",
-    "미술대학",
-    "경영대학",
-    "사회과학대학",
-  ];
-  const departments = [
-    "학부/학과명",
-    "컴퓨터공학과",
-    "전자전기공학과",
-    "수학교육과",
-    "경영학과",
-    "심리학과",
-  ];
+  const handleSubmit = async () => {
+    try {
+      const userData = {
+        instagramId,
+        introduction,
+        restaurantId,
+      };
 
-  // 폼 제출
-  const handleSubmit = () => {
-    console.log("단과대학:", college);
-    console.log("학부/학과:", department);
-    console.log("인스타:", instagram);
-    console.log("자기소개:", intro);
-    setIsSubmitted(true);
+      const response = await postRequest("/users", userData); // API 호출
+      localStorage.setItem("instagramId", instagramId);
+
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error("회원 등록 실패", error);
+      alert("회원 등록 중 오류가 발생했습니다.");
+    }
   };
 
   return (
@@ -72,17 +66,12 @@ function Join() {
         <img src={BackIcon} alt="뒤로가기" className={styles.backIcon} />
       </button>
 
-      {/* 1. 약관 동의 화면 */}
       {!isAgreed ? (
         <div className={styles.agreementContainer}>
-          <h2 className={styles.mainTitle}>
-            이용약관 및 개인정보 수집/이용 동의
-          </h2>
+          <h2 className={styles.mainTitle}>이용약관 및 개인정보 수집 동의</h2>
 
-          {/* 서비스 이용약관 */}
           <div className={styles.agreementBox}>
-            <h3 className={styles.agreementTitle}>서비스 이용약관 (필수)</h3>
-            <div className={styles.agreementContent}>
+            <h3 className={styles.agreementTitle}>
               1. 수집하는 개인정보 항목 홍익대학교 중앙 프로그래밍 동아리
               HICC(이하 "HICC")는 서비스 제공을 위해 다음과 같은 개인정보를
               수집합니다. 필수 정보: 학과, 인스타그램 아이디, 자기소개 2.
@@ -95,7 +84,7 @@ function Join() {
               및 불이익 사용자는 개인정보 제공에 동의하지 않을 권리가 있습니다.
               단, 필수 정보 제공에 동의하지 않을 경우, HICC의 일부 서비스 이용이
               제한될 수 있습니다. 위 내용에 동의하십니까?
-            </div>
+            </h3>
             <label className={styles.checkboxLabel}>
               <input
                 type="checkbox"
@@ -106,12 +95,8 @@ function Join() {
             </label>
           </div>
 
-          {/* 개인정보 수집 및 이용 동의 */}
           <div className={styles.agreementBox}>
             <h3 className={styles.agreementTitle}>
-              개인정보 수집 및 이용 동의서 (필수)
-            </h3>
-            <div className={styles.agreementContent}>
               1. 서비스 목적 HICC는 중앙 프로그래밍 동아리로서, 회원들에게
               다양한 정보 및 활동을 제공하는 온라인 서비스를 운영합니다. 본
               서비스는 학과별 네트워킹 및 정보 공유, 같은 관심사를 가진 사용자
@@ -125,7 +110,7 @@ function Join() {
               제한 HICC는 회원이 제공한 정보의 정확성과 신뢰성을 보장하지
               않습니다. 사용자의 부주의로 인해 발생한 문제에 대해 HICC는
               책임지지 않습니다. 위 내용에 동의하십니까?
-            </div>
+            </h3>
             <label className={styles.checkboxLabel}>
               <input
                 type="checkbox"
@@ -136,7 +121,6 @@ function Join() {
             </label>
           </div>
 
-          {/* 다음 단계 버튼 */}
           <button
             className={`${styles.submitButton} ${!isButtonEnabled ? styles.disabled : ""}`}
             onClick={handleAgree}
@@ -146,101 +130,44 @@ function Join() {
           </button>
         </div>
       ) : (
-        // 2. 가입 폼 화면
         <>
           {!isSubmitted ? (
             <>
-              <button className={styles.backButton} onClick={handleBack}>
-                <img
-                  src={BackIcon}
-                  alt="뒤로가기"
-                  className={styles.backIcon}
-                />
-              </button>
-
               <h2 className={styles.mainTitle}>
                 딱 이것만 입력하면 등록 완료!
               </h2>
 
-              <label className={styles.label}>학과를 선택해주세요</label>
-              <div className={styles.selectRow}>
-                {/* 단과대학 선택 */}
-                <div className={styles.selectWrapper}>
-                  <select
-                    className={styles.selectBox}
-                    value={college}
-                    onChange={(e) => setCollege(e.target.value)}
-                  >
-                    {colleges.map((col, index) => (
-                      <option key={index} value={col}>
-                        {col}
-                      </option>
-                    ))}
-                  </select>
-                  <img
-                    src={DownIcon}
-                    alt="드롭다운"
-                    className={styles.downIcon}
-                  />
-                </div>
-
-                {/* 학부/학과 선택 */}
-                <div className={styles.selectWrapper}>
-                  <select
-                    className={styles.selectBox}
-                    value={department}
-                    onChange={(e) => setDepartment(e.target.value)}
-                  >
-                    {departments.map((dept, index) => (
-                      <option key={index} value={dept}>
-                        {dept}
-                      </option>
-                    ))}
-                  </select>
-                  <img
-                    src={DownIcon}
-                    alt="드롭다운"
-                    className={styles.downIcon}
-                  />
-                </div>
-              </div>
-
-              <label className={styles.label}>
-                인스타그램 아이디를 입력해주세요
-              </label>
+              <label className={styles.label}>인스타그램 아이디</label>
               <input
                 className={styles.inputBox}
                 placeholder="ex) @hongik_hicc"
-                value={instagram}
-                onChange={(e) => setInstagram(e.target.value)}
+                value={instagramId}
+                onChange={(e) => setInstagramId(e.target.value)}
               />
 
-              <label className={styles.label}>
-                간단한 자기소개를 작성해주세요
-              </label>
+              <label className={styles.label}>간단한 자기소개</label>
               <textarea
                 className={styles.textArea}
                 placeholder="100자 이내로 작성해주세요"
                 maxLength={100}
-                value={intro}
-                onChange={(e) => setIntro(e.target.value)}
+                value={introduction}
+                onChange={(e) => setIntroduction(e.target.value)}
               />
 
               <button
                 className={`${styles.submitButton} ${!isSubmitEnabled ? styles.disabled : ""}`}
                 onClick={handleSubmit}
-                disabled={!isSubmitEnabled}
+                disabled={!isSubmitEnabled} // 소개란도 입력 필수
               >
                 등록하기
               </button>
             </>
           ) : (
-            // 3. 가입 완료 화면
             <div className={styles.completeContainer}>
               <p className={styles.doneText}>등록 완료!</p>
               <p className={styles.questionText}>
-                <span className={styles.highlight}>같은 과 친구</span>로
-                매칭할까요?
+                <span className={styles.highlight}>같은 식사 메이트</span>를
+                찾을까요?
               </p>
               <div className={styles.buttonGroup}>
                 <button

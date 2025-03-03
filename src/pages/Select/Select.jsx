@@ -37,7 +37,7 @@ const stepData = [
 // 2단계 선택에 따른 3단계 선택지 (3~9개)
 const thirdStepOptions = {
   1: [
-    { id: 11, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 39, label: "제육" },
     { id: 40, label: "국밥" },
     { id: 41, label: "백반" },
@@ -45,7 +45,7 @@ const thirdStepOptions = {
     { id: 43, label: "냉면" },
   ],
   2: [
-    { id: 12, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 44, label: "스시" },
     { id: 45, label: "우동" },
     { id: 46, label: "카레" },
@@ -53,7 +53,7 @@ const thirdStepOptions = {
     { id: 48, label: "돈까스" },
   ],
   3: [
-    { id: 13, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 53, label: "짜장/짬뽕" },
     { id: 49, label: "마라탕" },
     { id: 50, label: "탄탄면" },
@@ -61,7 +61,7 @@ const thirdStepOptions = {
     { id: 52, label: "딤섬" },
   ],
   4: [
-    { id: 14, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 54, label: "파스타" },
     { id: 55, label: "피자" },
     { id: 56, label: "햄버거" },
@@ -69,7 +69,7 @@ const thirdStepOptions = {
     { id: 58, label: "스테이크" },
   ],
   6: [
-    { id: 16, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 67, label: "브런치" },
     { id: 68, label: "베이커리" },
     { id: 69, label: "데이트" },
@@ -77,7 +77,7 @@ const thirdStepOptions = {
     { id: 71, label: "메이드" },
   ],
   5: [
-    { id: 15, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 66, label: "소개팅" },
     { id: 59, label: "횟집" },
     { id: 60, label: "칵테일바" },
@@ -88,12 +88,12 @@ const thirdStepOptions = {
     { id: 65, label: "단체석" },
   ],
   7: [
-    { id: 17, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 72, label: "떡볶이" },
     { id: 73, label: "김밥" },
   ],
   8: [
-    { id: 18, label: "없음" },
+    { id: 10, label: "없음" },
     { id: 48, label: "고기" },
     { id: 49, label: "곱창" },
   ],
@@ -130,20 +130,31 @@ function Select() {
   }
 
   const handleSelect = (choiceId) => {
-    if (currentStep === 2) {
-      setSelectedSecondStep(choiceId); // 2단계 선택값 저장
+    if (currentStep === 1) {
+      localStorage.setItem(
+        "selectedStation",
+        choiceId === 1 ? "홍대입구역" : "상수역"
+      );
+      setCurrentStep(2); // 다음 단계로 이동
+    } else if (currentStep === 2) {
+      setSelectedSecondStep(choiceId);
+      localStorage.setItem("selectedCategoryId", choiceId); // 선택한 카테고리 ID 저장
 
       setTimeout(() => {
         if (thirdStepOptions[choiceId]) {
-          setCurrentStep(3); // 3단계 선택지가 있으면 3단계로 이동
+          setCurrentStep(3);
         } else {
-          navigate("/qr"); // 3단계 선택지가 없으면 결과 페이지로 이동
+          localStorage.removeItem("selectedDish");
+          navigate("/qr");
         }
       }, 200);
     } else if (currentStep === 3) {
-      setTimeout(() => navigate("/qr"), 200); // 3단계에서 선택 후 결과 페이지 이동
-    } else {
-      setTimeout(goNext, 200);
+      if (choiceId !== 10) {
+        localStorage.setItem("selectedDish", choiceId); // '없음'이 아닐 때만 저장
+      } else {
+        localStorage.removeItem("selectedDish"); // '없음'이면 기존 선택값 삭제
+      }
+      setTimeout(() => navigate("/qr"), 200);
     }
   };
 

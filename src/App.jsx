@@ -4,7 +4,7 @@ import Layout from "./components/Common/Layout";
 import Home from "./pages/Home/Home";
 import Select from "./pages/Select/Select";
 import Result from "./pages/Result/Result";
-import QR from "./pages/Result/qr";
+import QR from "./pages/Result/QR";
 import Join from "./pages/Join/Join";
 import Mate from "./pages/Result/Mate";
 import TestAPI from "./pages/TestAPI/TestAPI";
