@@ -1,5 +1,5 @@
 
-[tinywow_2025-03-03 22 09 32_76209237.webm](https://github.com/user-attachments/assets/e65519a2-4e0b-40d2-9b44-05963f909dbe)
+![tinywow_2025-03-03 22-41-27_76210420](https://github.com/user-attachments/assets/0125375b-90f9-4b1c-9b25-00c6147eb08c)
 
 ## 📌 프로젝트 소개
 
