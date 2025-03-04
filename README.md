@@ -55,7 +55,7 @@ npm install
 `.env` 파일을 프로젝트 루트에 생성 후, 아래 내용을 추가합니다.
 
 ```env
-REACT_APP_API_BASE_URL=https://your-api-url.com
+VITE_API_BASE_URL=https://your-api-url.com
 ```
 ex) http://localhost:8080
 ### 4️⃣ 실행
