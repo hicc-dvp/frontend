@@ -47,7 +47,7 @@ cd dongari-expo
 ### 2️⃣ 패키지 설치
 
 ```bash
-yarn install  # 또는 npm install
+npm install
 ```
 
 ### 3️⃣ 환경 변수 설정
@@ -61,7 +61,7 @@ ex) http://localhost:8080
 ### 4️⃣ 실행
 
 ```bash
-yarn start  # 또는 npm start
+npm start
 ```
 
 
