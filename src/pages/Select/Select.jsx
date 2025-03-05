@@ -8,7 +8,7 @@ import BackIcon from "../../assets/svg/back.svg?url"; // 뒤로가기 아이콘
 const stepData = [
   {
     id: 1,
-    question: "주로 어디에서 강의가 끝나나요?",
+    question: "강의실이 어디에 가깝나요?",
     subquestion: "홍대입구역/상수역 중 한 군데만 선택해주세요",
     choices: [
       { id: 1, label: "홍대입구역" },

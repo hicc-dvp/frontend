@@ -74,7 +74,7 @@ function Mate() {
       </button>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          같은 식당을 고른 친구에요.
+          같은 메인 디쉬를 고른 친구에요.
           <br />
           연락해볼까요?
         </h2>
