@@ -13,20 +13,20 @@ function Mate() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const restaurantId = localStorage.getItem("selectedRestaurant");
-        const myInstagramId = localStorage.getItem("instagramId"); // 🔥 본인의 인스타그램 ID 가져오기
+        const categoryId = localStorage.getItem("selectedCategoryId");
+        const myInstagramId = localStorage.getItem("instagramId"); // 본인의 인스타그램 ID 가져오기
 
-        console.log("현재 로그인한 본인의 인스타그램 ID:", myInstagramId); // 🔥 본인 인스타 아이디 콘솔 출력
+        console.log("현재 로그인한 본인의 인스타그램 ID:", myInstagramId); // 본인 인스타 아이디 콘솔 출력
 
         if (!restaurantId) {
           console.error("식당 ID 없음");
           return;
         }
 
-        const response = await getRequest(`/users/${restaurantId}`);
+        const response = await getRequest(`/users/${categoryId}`);
         console.log("받아온 유저 리스트:", response); // API 응답 유저 리스트 출력
 
-        // 🔥 본인 인스타 아이디와 같은 유저 제외
+        // 본인 인스타 아이디와 같은 유저 제외
         const filteredUsers = response.filter(
           (user) => user.instagramId !== myInstagramId
         );

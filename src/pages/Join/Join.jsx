@@ -19,9 +19,9 @@ function Join() {
   const [restaurantId, setRestaurant] = useState(0); // 기본값 0
 
   useEffect(() => {
-    const selectedRestaurant = localStorage.getItem("selectedRestaurant");
-    if (selectedRestaurant) {
-      setRestaurant(parseInt(selectedRestaurant, 10));
+    const selectedCategory = localStorage.getItem("selectedCategoryId");
+    if (selectedCategory) {
+      setSearchQueryId(parseInt(selectedCategory, 10)); // 카테고리 ID 저장
     }
   }, []);
 
@@ -50,11 +50,11 @@ function Join() {
       }
       const userData = {
         instagramId: formattedInstagramId,
+        searchQueryId,
         introduction,
-        restaurantId,
       };
 
-      const response = await postRequest("/users", userData); // API 호출
+      await postRequest("/users", userData); // API 호출
       localStorage.setItem("instagramId", instagramId);
 
       setIsSubmitted(true);
