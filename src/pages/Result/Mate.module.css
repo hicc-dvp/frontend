@@ -20,6 +20,10 @@
   margin-bottom: 4px;
 }
 
+.highlight1 {
+  color: var(--main-color);
+}
+
 .subText {
   font-size: 14px;
   color: #666;

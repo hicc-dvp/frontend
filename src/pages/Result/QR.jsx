@@ -74,7 +74,7 @@ function QR() {
             의 네이버 지도에요
           </h2>
           <p className={styles.subText}>
-            등록하면 함께 갈 식사 메이트를 구할 수 있어요
+            등록하면 식사 메이트를 구할 수 있어요
           </p>
 
           <div className={styles.iframeWrapper}>

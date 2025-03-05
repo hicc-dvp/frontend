@@ -9,6 +9,19 @@ function Mate() {
   const navigate = useNavigate();
   const [users, setUsers] = useState([]); // 같은 식당을 선택한 유저 리스트
   const [currentUser, setCurrentUser] = useState(null); // 현재 표시할 유저
+  const [selectedCategory, setSelectedCategory] = useState("");
+
+  const categoryNames = {
+    1: "한식",
+    2: "일식",
+    3: "중식",
+    4: "양식",
+    5: "술집",
+    6: "카페",
+    7: "분식",
+    8: "구이",
+    9: "패스트푸드",
+  };
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -18,10 +31,7 @@ function Mate() {
 
         console.log("현재 로그인한 본인의 인스타그램 ID:", myInstagramId); // 본인 인스타 아이디 콘솔 출력
 
-        if (!restaurantId) {
-          console.error("식당 ID 없음");
-          return;
-        }
+        setSelectedCategory(categoryNames[categoryId] || "음식");
 
         const response = await getRequest(`/users/${categoryId}`);
         console.log("받아온 유저 리스트:", response); // API 응답 유저 리스트 출력
@@ -74,7 +84,8 @@ function Mate() {
       </button>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          같은 식당을 고른 친구에요.
+          <span className={styles.highlight1}> {selectedCategory} </span>를 고른
+          친구에요!
           <br />
           연락해볼까요?
         </h2>
