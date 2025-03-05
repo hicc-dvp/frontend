@@ -78,13 +78,12 @@ function QR() {
           </p>
 
           <div className={styles.iframeWrapper}>
-              <embed
-                src={getMapUrl(currentRestaurant.name)}
-                className={styles.mapIframe}
-                title="네이버 지도"
-                width="100%"
-                height="500"
-              ></embed>
+            <iframe
+              src={getMapUrl(currentRestaurant.name)}
+              className={styles.mapIframe}
+              title="네이버 지도"
+              allowFullScreen
+            ></iframe>
           </div>
 
           <div className={styles.buttonGroup}>
