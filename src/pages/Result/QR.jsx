@@ -17,7 +17,7 @@ function QR() {
         const dishId = localStorage.getItem("selectedDish");
 
         let apiUrl = "";
-        if (dishId && dishId !== "10") {
+        if (dishId && dishId !== "99") {
           apiUrl = `/restaurants/search-queries/${dishId}/restaurant?station=${encodeURIComponent(station)}`;
         } else {
           apiUrl = `/restaurants/categories/${categoryId}/restaurant?station=${encodeURIComponent(station)}`;
