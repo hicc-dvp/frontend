@@ -16,12 +16,12 @@ function Join() {
   // 2. 가입 폼 입력 상태
   const [instagramId, setInstagramId] = useState("");
   const [introduction, setIntroduction] = useState("");
-  const [restaurantId, setRestaurant] = useState(0); // 기본값 0
+  const [searchQueryId, setSearchQueryId] = useState(0);
 
   useEffect(() => {
-    const selectedCategory = localStorage.getItem("selectedCategoryId");
-    if (selectedCategory) {
-      setSearchQueryId(parseInt(selectedCategory, 10)); // 카테고리 ID 저장
+    const selectedDish = localStorage.getItem("selectedDish");
+    if (selectedDish) {
+      setSearchQueryId(parseInt(selectedDish, 10)); // 카테고리 ID 저장
     }
   }, []);
 

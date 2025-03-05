@@ -26,14 +26,14 @@ function Mate() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const categoryId = localStorage.getItem("selectedCategoryId");
+        const selectedDish = localStorage.getItem("selectedDish");
         const myInstagramId = localStorage.getItem("instagramId"); // 본인의 인스타그램 ID 가져오기
 
         console.log("현재 로그인한 본인의 인스타그램 ID:", myInstagramId); // 본인 인스타 아이디 콘솔 출력
 
-        setSelectedCategory(categoryNames[categoryId] || "음식");
+        setSelectedCategory(categoryNames[selectedDish] || "음식");
 
-        const response = await getRequest(`/users/${categoryId}`);
+        const response = await getRequest(`/users/${selectedDish}`);
         console.log("받아온 유저 리스트:", response); // API 응답 유저 리스트 출력
 
         // 본인 인스타 아이디와 같은 유저 제외
@@ -84,8 +84,7 @@ function Mate() {
       </button>
       <div className={styles.content}>
         <h2 className={styles.title}>
-          <span className={styles.highlight1}> {selectedCategory} </span>를 고른
-          친구에요!
+          같은 음식을 고른 친구에요!
           <br />
           연락해볼까요?
         </h2>
