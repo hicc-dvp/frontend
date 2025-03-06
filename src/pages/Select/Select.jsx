@@ -109,7 +109,7 @@ function Select() {
   if (currentStep === 3 && selectedSecondStep) {
     stepInfo = {
       id: 3,
-      question: "선호하는 메인 디쉬가 있으신가요?",
+      question: "선호하는 메인 디쉬 및 키워드가 있으신가요?",
       subquestion: "없다면 ‘없음'을 눌러주세요",
       choices: thirdStepOptions[selectedSecondStep] || [],
     };
