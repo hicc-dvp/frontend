@@ -100,7 +100,7 @@
 /* 파란색 버튼 */
 .blueButton {
   width: 250px;
-  background-color: var(--main-color);
+  background-color: #ff6347;
   color: #fff;
   border: none;
   padding: 12px 24px;

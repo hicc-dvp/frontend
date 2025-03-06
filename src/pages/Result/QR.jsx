@@ -94,10 +94,10 @@ function QR() {
               마치기
             </button>
             <button className={styles.skyButton} onClick={handleRefresh}>
-              다른 음식점 보기
+              식당 새로고침
             </button>
             <button className={styles.blueButton} onClick={handleRegister}>
-              등록하기
+              친구 찾기
             </button>
           </div>
         </div>
